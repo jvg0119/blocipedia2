@@ -1,0 +1,7 @@
+<%# flash[:success] = "testing" %>
+<% flash.each do |key, msg| %>
+  <div class="alert alert-<%= flash_class(key) %>">
+  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+  	<%= msg %>
+  </div>
+<% end %>
