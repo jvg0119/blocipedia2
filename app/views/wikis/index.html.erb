@@ -1,0 +1,17 @@
+<h1>All Public Wikis</h1>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Wikis</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  	<%= render partial: 'wiki', locals: { num: 0 }, collection: @wikis %>
+</table>
+
+
+<%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' %>
+

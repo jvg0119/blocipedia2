@@ -1,0 +1,9 @@
+  <tbody>
+    <tr>
+      <td><%= link_to wiki.title, wiki %></td>
+      <td><%= truncate(wiki.body, length: 25, separator: ' ') %></td>
+      <td><%= link_to "Edit", edit_wiki_path(wiki)  %></td>
+	  <td><%= link_to "Delete", wiki_path(wiki), method: :delete, data: {confirm: 'Are you sure you want to delete this wiki?'} %></td>
+      <td></td>
+    </tr>
+  </tbody>

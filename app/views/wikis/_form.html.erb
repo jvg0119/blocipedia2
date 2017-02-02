@@ -1,0 +1,25 @@
+<div class="rows col-md-6">
+
+<%= form_for @wiki do |f| %>
+	
+	<% if @wiki.errors.any? %>
+		<%= render partial: 'shared/error_message', locals: { object: @wiki } %>
+	<% end %>
+
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "Enter wiki title" %>
+	</div>
+	
+	<div class="form-group">
+		<%= f.label :body %>
+		<%= f.text_area :body, rows: 6, class: "form-control", placeholder: "Enter wiki body" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.submit class: "btn btn-success" %>
+	</div>
+
+<% end %>
+
+</div>

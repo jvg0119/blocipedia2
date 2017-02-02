@@ -1,0 +1,8 @@
+<div class="well error-background">
+	<h4><%= pluralize @wiki.errors.count, "error" %> prohibited this wiki from being saved:</h4>
+	<% object.errors.full_messages.each do |msg| %>
+	<ul>
+		<li><%= msg %></li>
+	</ul>
+	<% end %>
+</div>

@@ -19,7 +19,11 @@ footer {
 }
 
 .background-image {
-	background: image-url('background.jpeg');
+	background: image-url('background.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.error-background {
+  background: #F2DEDE;
 }
