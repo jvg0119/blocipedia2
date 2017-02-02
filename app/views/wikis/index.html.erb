@@ -12,6 +12,9 @@
   	<%= render partial: 'wiki', locals: { num: 0 }, collection: @wikis %>
 </table>
 
+<p><%= will_paginate @wikis %></p>
 
-<%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' if policy(@wikis).create? %>
+<p><%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' if policy(@wikis).create? %></p>
+<br />
+<br />
 

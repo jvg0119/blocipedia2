@@ -57,6 +57,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.2'
 gem 'figaro', '~> 1.1', '>= 1.1.1' 
 gem 'pundit', '~> 1.1'
+gem 'faker', '~> 1.7', '>= 1.7.2'
+gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 
 
 
