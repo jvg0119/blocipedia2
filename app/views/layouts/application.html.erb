@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="background-image">
 
   	<div class="container">
   		<header>
@@ -19,7 +19,7 @@
 			<%= yield %>
 
 			<footer>
-
+        <%= render 'layouts/footer' %>
 			</footer>
 
   	</div>

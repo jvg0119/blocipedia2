@@ -8,4 +8,18 @@ body {
   padding-top: $navbar-height;
 }
 
+footer {
+	position: fixed;
+  bottom:0;
+  color: black;
+  background-color: #EEEEEE;
+  text-align: center;
+  width: 100%;
+  //border: 1px solid gray;
+}
 
+.background-image {
+	background: image-url('background.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
