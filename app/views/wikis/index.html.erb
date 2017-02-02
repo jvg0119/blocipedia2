@@ -13,5 +13,5 @@
 </table>
 
 
-<%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' %>
+<%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' if policy(@wikis).create? %>
 
