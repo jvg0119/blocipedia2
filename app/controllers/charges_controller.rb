@@ -40,6 +40,9 @@ class ChargesController < ApplicationController
 
 	def downgrade
 		current_user.update_attribute(:role, "standard")
+		current_user.wikis.where(private: true).each do |wiki| 
+			wiki.update_attribute(:private, false)
+		end
 		flash[:notice] = "You are now downgraded back to standard user (#{current_user.name})."
 		redirect_to root_url		
 	end
