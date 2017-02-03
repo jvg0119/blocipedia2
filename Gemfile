@@ -59,6 +59,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'pundit', '~> 1.1'
 gem 'faker', '~> 1.7', '>= 1.7.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+gem 'stripe', '~> 1.58'
 
 
 

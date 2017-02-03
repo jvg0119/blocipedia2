@@ -1,0 +1,18 @@
+
+<%= form_tag charges_path do %>
+	<br />
+	<p>Upgrade to premium account for a <%= amount_in_currency(@amount)%> one time fee.</p>
+	<h4>Click the button! </h4>
+	<script class='stripe-button'
+		src="https://checkout.stripe.com/checkout.js" 
+		data-key="<%= @stripe_btn_data[:key] %>"
+ 		data-amount="<%= @stripe_btn_data[:amount] %>"
+		data-description="<%= @stripe_btn_data[:description] %>"
+		data-email="<%= current_user.email %>"
+    data-locale="auto">
+	</script>
+
+<% end %>
+
+
+
