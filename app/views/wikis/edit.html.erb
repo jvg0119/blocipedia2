@@ -1,2 +1,2 @@
-<h1>Edit <%= @wiki.title %></h1>
+<h1>Edit <%= markdown_to_html @wiki.title %></h1>
 <%= render 'form' %>

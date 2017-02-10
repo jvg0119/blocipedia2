@@ -1,7 +1,7 @@
-<h1>All Public Wikis</h1>
+<h1>Wikis</h1>
 
 
-<table class="table table-hover">
+<!-- <table class="table table-hover">
   <thead>
     <tr>
       <th>Wikis</th>
@@ -9,12 +9,55 @@
       <th></th>
     </tr>
   </thead>
-  	<%= render partial: 'wiki', locals: { num: 0 }, collection: @wikis %>
+  	<%#= render partial: 'wiki', collection: @wikis %>
 </table>
+ -->
+<p><%#= will_paginate @wikis %></p>
 
-<p><%= will_paginate @wikis %></p>
-
-<p><%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' if policy(@wikis).create? %></p>
+<p><%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' if policy(Wiki.new).new? %></p>
 <br />
 <br />
+
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#public" data-toggle="tab"> Public Wikis</a></li>
+    <% if current_user && current_user.admin? || current_user && (current_user.premium? || current_user.wiki_collaborations.any?) %>
+    <li><a href="#private" data-toggle="tab"> Private Wikis</a></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="public">
+      <table class="table table-hover">
+			  <thead>
+<!-- 			    <tr>
+			      <th></th>
+			      <th></th>
+			      <th></th>
+			    </tr> -->
+			  </thead>
+			  	<%= render partial: 'public_wiki', collection: @public_wikis %>
+			</table>
+			<p><%= will_paginate @public_wikis %></p>
+    </div>
+
+
+    <div class="tab-pane" id="private">
+    	<table class="table table-hover">
+      <thead>
+<!-- 		    <tr>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+		    </tr> -->
+		  </thead>
+			  <%= render partial: 'private_wiki', collection: @private_wikis %>
+		</table>
+			<p><%= will_paginate @private_wikis %></p>
+    </div>
+
+  </div>
+</div>
+
+<br /><br /><br /><br />
 

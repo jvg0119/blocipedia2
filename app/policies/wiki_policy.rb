@@ -5,18 +5,6 @@ class WikiPolicy < ApplicationPolicy
     true
   end
 
-  def show?
-    scope.where(:id => record.id).exists?
-  end
-
-  def create?
-    #false
-    user.present?
-  end
-
-  def new?
-    create?
-  end
 
   def update?
     #false
@@ -24,13 +12,8 @@ class WikiPolicy < ApplicationPolicy
     user.present? 
   end
 
-  def edit?
-    update?
-  end
-
   def destroy?
-    #false
-    update?
+    user.present? && (record.user == user || user.admin?)
   end
 
 
@@ -43,7 +26,35 @@ class WikiPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope
-    end
+      wikis = []
+     # if user.role == 'admin'
+     if user.try(:admin?)
+        wikis = scope.all 
+
+      elsif user.try(:premium?) 
+        #scope.public_wikis | scope.where(private: true, user: user) # cannot use arrays
+        all_wikis = scope.all 
+        all_wikis.each do |wiki| 
+          if !wiki.private? || wiki.user == user || wiki.wiki_collaborators.include?(user)
+            wikis << wiki
+          end
+        end
+
+      else
+        all_wikis = scope.all
+        wikis = [] 
+        all_wikis.each do |wiki| 
+          if !wiki.private? || wiki.wiki_collaborators.include?(user)
+            wikis << wiki 
+          end
+        end
+      end
+      wikis
+    end    
   end
 end
+
+
+
+
+

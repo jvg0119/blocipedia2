@@ -1,11 +1,13 @@
-  <tbody>
+
+
+ <tbody>
     <tr>
       <td><%= link_to markdown_to_html(wiki.title), wiki %></td>
       <%#= markdown_to_html(truncate(wiki.body, length: 25, separator: ' ')) %><!-- does not work here-->
       <% if policy(wiki).edit? %>
-	      <td><%= link_to "Edit", edit_wiki_path(wiki)  %></td>
-		  <td><%= link_to "Delete", wiki_path(wiki), method: :delete, data: {confirm: 'Are you sure you want to delete this wiki?'} %></td>
-	  <% end %>
+        <td><%= link_to "Edit", edit_wiki_path(wiki)  %></td>
+      <td><%= link_to "Delete", wiki_path(wiki), method: :delete, data: {confirm: 'Are you sure you want to delete this wiki?'} if policy(wiki).destroy? %></td>
+    <% end %>
       <td></td>
     </tr>
   </tbody>

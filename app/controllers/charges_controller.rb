@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
 
 		current_user.update_attribute(:role, "premium")
 		flash[:notice] = "Thanks for becoming a Blocipedia premium member #{current_user.name}!"
-		redirect_to user_path(current_user) # or wherever 
+		redirect_to wikis_path # user_path(current_user) # or wherever 
 
 		# Stripe will send back CardErrors, with friendly messages
 		# when something goes wrong.

@@ -3,10 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  
   has_many :wikis
+  has_many :collaborators 
+  has_many :wiki_collaborations, through: :collaborators, source: :wiki 
 
   enum role: { standard: 0, premium: 1, admin: 2 }
-  # enum role: [ :standard, :premium, :admin ]
+  # enum role: [ :standard, :premium, :admin ]  
 
   after_initialize :set_default 
 

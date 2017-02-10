@@ -3,8 +3,13 @@ class WikisController < ApplicationController
 	before_action :set_wiki, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@wikis = Wiki.all.paginate(page: params[:page], per_page: 10)
-    authorize @wikis
+  	#@wikis = Wiki.all.paginate(page: params[:page], per_page: 10)
+    #@wikis = policy_scope(Wiki).paginate(page: params[:page], per_page: 10)
+    #@public_wikis = policy_scope(Wiki.where(private: false)).paginate(page: params[:page], per_page: 10)
+    @public_wikis = policy_scope(Wiki.public_wikis).paginate(page: params[:page], per_page: 10)
+    #@private_wikis = policy_scope(Wiki.where(private: true)).paginate(page: params[:page], per_page: 10)
+    @private_wikis = policy_scope(Wiki.private_wikis).paginate(page: params[:page], per_page: 10)
+  #  authorize @wikis
   end
 
   def show
@@ -30,6 +35,7 @@ class WikisController < ApplicationController
 
   def edit
     authorize @wiki
+   # @users = User.all
   end
 
   def update
@@ -45,6 +51,7 @@ class WikisController < ApplicationController
 
   def destroy
     authorize @wiki
+    #raise
   	@wiki.destroy
  		flash[:notice] = "Deleted wiki."
   	redirect_to wikis_path   	

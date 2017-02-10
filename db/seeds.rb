@@ -30,13 +30,16 @@ u5 = User.new(name: "Admin", email: "admin@example.com", password: "password", r
 u5.skip_confirmation!
 u5.save!
 
-# wikis
+# public wikis
 1.upto(20) do
-	Wiki.create(title: Faker::Hipster.sentence, body: Faker::Hipster.paragraph, user: users.sample)
+	user = users.sample
+	Wiki.create(title: "#{Faker::Hipster.sentence} -- public by #{user.name}", body: Faker::Hipster.paragraph, user: user )
 end
 
+# private wikis
 1.upto(10) do 
-	Wiki.create(title: Faker::Hipster.sentence, body: Faker::Hipster.paragraph, user: premium_users.sample, private: true)
+	premium_user = premium_users.sample
+	Wiki.create(title: "#{Faker::Hipster.sentence} -- private by #{premium_user.name}", body: Faker::Hipster.paragraph, user: premium_user, private: true)
 end
 
 
