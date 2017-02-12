@@ -1,5 +1,5 @@
 class Wiki < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true # removes validates :user, presence: true
 
   has_many :collaborators 
   has_many :wiki_collaborators, through: :collaborators, source: :user 
@@ -10,5 +10,6 @@ class Wiki < ApplicationRecord
 
   scope :public_wikis, -> { where(private: false) }           
   scope :private_wikis, -> { where(private: true) }
+  
  
 end

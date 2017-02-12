@@ -1,6 +1,4 @@
 <h1>Wikis</h1>
-
-
 <!-- <table class="table table-hover">
   <thead>
     <tr>
@@ -18,12 +16,12 @@
 <br />
 <br />
 
-
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
     <li class="active"><a href="#public" data-toggle="tab"> Public Wikis</a></li>
-    <% if current_user && current_user.admin? || current_user && (current_user.premium? || current_user.wiki_collaborations.any?) %>
-    <li><a href="#private" data-toggle="tab"> Private Wikis</a></li>
+    <%# if current_user && current_user.admin? || current_user && (current_user.premium? || current_user.wiki_collaborations.any?) %>
+    <% if show_private_tab %>
+      <li><a href="#private" data-toggle="tab"> Private Wikis</a></li>
     <% end %>
   </ul>
   <div class="tab-content">
@@ -38,9 +36,8 @@
 			  </thead>
 			  	<%= render partial: 'public_wiki', collection: @public_wikis %>
 			</table>
-			<p><%= will_paginate @public_wikis %></p>
+			<p><%#= will_paginate @public_wikis %></p>
     </div>
-
 
     <div class="tab-pane" id="private">
     	<table class="table table-hover">
@@ -53,7 +50,7 @@
 		  </thead>
 			  <%= render partial: 'private_wiki', collection: @private_wikis %>
 		</table>
-			<p><%= will_paginate @private_wikis %></p>
+			<p><%#= will_paginate @private_wikis %></p>
     </div>
 
   </div>

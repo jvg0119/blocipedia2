@@ -6,9 +6,9 @@ class WikisController < ApplicationController
   	#@wikis = Wiki.all.paginate(page: params[:page], per_page: 10)
     #@wikis = policy_scope(Wiki).paginate(page: params[:page], per_page: 10)
     #@public_wikis = policy_scope(Wiki.where(private: false)).paginate(page: params[:page], per_page: 10)
-    @public_wikis = policy_scope(Wiki.public_wikis).paginate(page: params[:page], per_page: 10)
+    @public_wikis = policy_scope(Wiki.public_wikis)#.paginate(page: params[:page], per_page: 10)
     #@private_wikis = policy_scope(Wiki.where(private: true)).paginate(page: params[:page], per_page: 10)
-    @private_wikis = policy_scope(Wiki.private_wikis).paginate(page: params[:page], per_page: 10)
+    @private_wikis = policy_scope(Wiki.private_wikis)#.paginate(page: params[:page], per_page: 10)
   #  authorize @wikis
   end
 

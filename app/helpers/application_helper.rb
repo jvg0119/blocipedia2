@@ -23,4 +23,22 @@ module ApplicationHelper
   #   raw Markdown.new(wiki).to_html  # test only (OK)
   # end
 
+  def show_private_tab
+    current_user && (current_user.admin? ||  # if current_user is an admin
+    current_user.premium? ||                 # current_user is a premium
+    current_user.wiki_collaborations.any?)   # current_user has any private wiki collaborations
+  end
+
+  def show_private_wiki_check_box
+    (!@wiki.id && current_user.premium?) ||  # if creating a new wiki and user is either premium or admin
+    (@wiki.id && (current_user.premium? && @wiki.user == current_user)) ||   # updating a wiki and current_user is a premium and is the wiki owner 
+    current_user.admin? # or user is an admin
+  end
+
+  def manage_wiki_collaborations?
+    @wiki.private && (current_user == @wiki.user || current_user.admin?) 
+  end 
+
 end
+
+

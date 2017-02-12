@@ -15,10 +15,9 @@
 		<%= f.label :body %>
 		<%= f.text_area :body, rows: 6, class: "form-control", placeholder: "Enter wiki body" %>
 	</div>
- <!-- && @wiki.user == current_user   current_user.id-->
- 	<%# railse %>
- 	<% if (!@wiki.id && (current_user.premium? || current_user.admin?)) || (@wiki.id && (current_user.premium? && @wiki.user == current_user) || current_user.admin? ) %>
 	<%# if (current_user.premium? || current_user.admin?) %>
+ 	<%# if (!@wiki.id && (current_user.premium? || current_user.admin?)) || (@wiki.id && (current_user.premium? && @wiki.user == current_user) || current_user.admin? ) %>
+ 	<% if show_private_wiki_check_box %>
 		<div class="form-group">
 			<%#= f.check_box :private %>
 			<%#= f.label :private, "Make wiki private" %>
@@ -28,7 +27,8 @@
 		</div>
 	<% end %>
 
-	<% if @wiki.private && (current_user == @wiki.user || current_user.admin?) %>
+	<%# if @wiki.private && (current_user == @wiki.user || current_user.admin?) %>
+	<% if manage_wiki_collaborations? %>
 		<div class="form-group">
 			<%= link_to "Manage wiki collaborators", wiki_collaborators_path(@wiki) %>
 			<%#= render partial: 'collaborators/collaborator' , collection: @user_collaborators %>
@@ -42,6 +42,4 @@
 <% end %>
 
 </div>
-
-<%# if current_user && (current_user.premium? || current_user.admin?) %>
 

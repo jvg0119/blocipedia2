@@ -5,7 +5,6 @@ class WikiPolicy < ApplicationPolicy
     true
   end
 
-
   def update?
     #false
     # user.present? && (record.user == user || user.admin?)
@@ -26,35 +25,21 @@ class WikiPolicy < ApplicationPolicy
     end
 
     def resolve
-      wikis = []
-     # if user.role == 'admin'
-     if user.try(:admin?)
-        wikis = scope.all 
 
+     if user.try(:admin?)
+        wikis = scope.all
       elsif user.try(:premium?) 
-        #scope.public_wikis | scope.where(private: true, user: user) # cannot use arrays
-        all_wikis = scope.all 
-        all_wikis.each do |wiki| 
-          if !wiki.private? || wiki.user == user || wiki.wiki_collaborators.include?(user)
-            wikis << wiki
-          end
-        end
+         scope.public_wikis + scope.private_wikis.where(user: user) + user.wiki_collaborations
+         # public wikis + private wikis owned by current_user + wikis the user is collaborating with
+
+      elsif user.try(:standard?)
+        scope.public_wikis + user.wiki_collaborations
 
       else
-        all_wikis = scope.all
-        wikis = [] 
-        all_wikis.each do |wiki| 
-          if !wiki.private? || wiki.wiki_collaborators.include?(user)
-            wikis << wiki 
-          end
-        end
-      end
-      wikis
-    end    
-  end
+        scope.public_wikis # guest
+      end  
+    end   # resolve
+  end   # scope
 end
-
-
-
 
 

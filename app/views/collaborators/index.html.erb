@@ -1,6 +1,6 @@
-<h1>Wiki Collaborators for <%= @wiki.title %> </h1>
+<h1>Wiki Collaborators for: </h1>
+<h2> <%= @wiki.title %></h2>
 
-<% if current_user && (current_user.premium? || current_user.admin?) %>
 	<table class="table table-hover">
 	  <thead>
 	    <tr>
@@ -10,17 +10,14 @@
 	    </tr>
 	  </thead>
 	  <% @users.each do |user| %>
-	  
-	  	<%# unless (user == current_user || user.admin?) || (user.admin? && @wiki.user) || user.admin? %>
-	  	<%# unless (user.admin? && @wiki.user) || user.admin? || user == current_user  %>
-	  	<%# unless (user == current_user || user.admin?) || (current_user.admin? && user == @wiki.user) %>
-	  	<% unless user == current_user || user.admin? || user == @wiki.user %>
-	  	<%# raise %>
+	  	<% unless (user == current_user) || user.admin? || (user == @wiki.user) %>
+	  	<!-- don't include user if current_user is the user, if user is an admin, or if user is owner of the wiki   --> 
 	  <tbody>
 	    <tr>
 	      <td><%= user.name %></td>
 	      <td><%= user.email %></td>
-	      <% if @wiki.wiki_collaborators.include?(user) %>
+	      <%# if @wiki.wiki_collaborators.include?(user) %> <!-- OK -->
+	      <% if @wiki_collaborators.include?(user) %>
 	      	<td><%= link_to "Remove collaborator", wiki_collaborator_path(@wiki, user), method: :delete %></td>
 	      <% else %>
 	      	<td><%= link_to "Add collaborator", wiki_collaborators_path(wiki_id: @wiki, user_id: user), method: :post %></td>
@@ -30,7 +27,6 @@
 	  	<% end %>
 	  <% end %>
 	</table>
-<% end %>
 
 <br/><br/>
 
