@@ -1,7 +1,7 @@
 
  <tbody>
     <tr>
-      <td><%= link_to markdown_to_html(public_wiki.title), public_wiki %></td>
+      <td><%= link_to markdown_to_html(public_wiki.title), wiki_path(public_wiki) %></td>
       <td><%#= link_to(public_wiki.title) %></td>
       <%#= markdown_to_html(truncate(wiki.body, length: 25, separator: ' ')) %><!-- does not work here-->
       <% if policy(public_wiki).edit? %>
