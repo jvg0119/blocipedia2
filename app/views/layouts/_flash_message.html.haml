@@ -1,0 +1,9 @@
+/- flash[:success] = "testing"
+
+- flash.each do |key, msg|
+	%div{ :class => "alert alert-#{ flash_class(key)} " }
+		%button.close{ data: { dismiss: 'alert' } } x
+		= msg
+
+
+

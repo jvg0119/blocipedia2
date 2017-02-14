@@ -1,0 +1,9 @@
+.well.error-background
+	%h4 
+		= pluralize @wiki.errors.count, "error" 
+		"prohibited this message from being saved:"
+	-object.errors.full_messages.each do |msg|
+		%ul
+			%li 
+				= msg
+

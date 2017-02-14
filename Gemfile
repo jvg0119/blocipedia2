@@ -66,7 +66,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'stripe', '~> 1.58'
 gem 'redcarpet', '~> 3.4'
 
-
+gem 'haml', '~> 4.0', '>= 4.0.7'
 
 
 

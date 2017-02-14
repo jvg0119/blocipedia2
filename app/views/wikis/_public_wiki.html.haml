@@ -1,0 +1,16 @@
+%tbody
+	%tr
+		%td 
+			= link_to markdown_to_html(public_wiki.title), wiki_path(public_wiki)
+		- if policy(public_wiki).edit?
+			%td
+				- if policy(public_wiki).edit?
+					%td 
+						= link_to "Edit", edit_wiki_path(public_wiki)
+						= link_to "Delete", wiki_path(public_wiki), method: :delete, 
+							data: {confirm: 'Are you sure you want to delete this wiki?'} if policy(public_wiki).destroy?
+
+
+
+
+

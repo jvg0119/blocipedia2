@@ -1,0 +1,35 @@
+%p
+	This is a paragraph
+	%small with some small text
+	as well as 
+	%b 
+		some bolded text, 
+		%em 
+		with some italics
+
+%h1 Text
+
+.fist-div
+	#id-name
+
+- if true 
+	.div-name 
+	- link_to 'Gooble', 'https://www.google.com' 
+- else	
+#other-div 
+	Watch me interpolate.
+	= "The floowng is the ure's name!: test only"
+	%p Some text
+
+
+.row
+	.col-md-12 
+		.col-md-4 
+		%h2 Solves world hunber 
+		%p Blocit will deliver food and water to those in need, all over the workd 
+		.col-md-4
+		%h2 Eliminates poverty
+		%p Bloccit will deliver money and education to those in need, all over the world.
+		.col-md-4
+		%h2 Makes yo better looking
+		%p Bloccit will make you better looking: it's scientifically proven to make men look like Ryan Gosling and women look like Shakira.

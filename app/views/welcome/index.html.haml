@@ -1,0 +1,36 @@
+%br
+.jumbotron
+	%h1.display-3 Blocipedia
+	%p.lead This is a production quality SaaS app that allows users to create their own wikis.
+	%hr.my-4
+
+	-if current_user && current_user.admin?
+		%p.lead
+			%small You are an admin user!
+			%p 
+				= link_to "Learn more", about_path, class: 'btn btn-primary btn-md'
+	-elsif current_user && current_user.premium?
+		%p.lead
+			%small 
+				If you'd like you can downgrade back to the standard account?
+				Doing so will cause your private wikis to become public also.
+		%p
+			=link_to "Learn more", about_path, class: 'btn btn-primary btn-md'
+			=link_to "Downgrade", charges_downgrade_path,method: :post, data: {confirm: "Are you sure you want to downgrade your account?"}, class: 'btn btn-primary btn-md'
+	-elsif current_user
+		%p.lead
+			%small
+				Want to be able to create and edit private wikis?
+				You can upgrade to a premium account for $10.
+			%p
+				= link_to "Learn more", about_path, class: 'btn btn-primary btn-md'
+				= link_to "Premium Upgrade", new_charge_path, class: 'btn btn-primary btn-md'	
+	-else
+		%p.lead
+			%small
+				You can sign up for a free account and later upgrade to a premium account.
+			%p
+				= link_to "Learn more", about_path, class: 'btn btn-primary btn-md'
+				= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-md'	
+
+
