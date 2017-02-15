@@ -11,5 +11,7 @@ class Wiki < ApplicationRecord
   scope :public_wikis, -> { where(private: false) }           
   scope :private_wikis, -> { where(private: true) }
   
- 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
 end

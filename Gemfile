@@ -65,6 +65,7 @@ gem 'faker', '~> 1.7', '>= 1.7.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
 gem 'stripe', '~> 1.58'
 gem 'redcarpet', '~> 3.4'
+gem 'friendly_id', '~> 5.2'
 
 
 
